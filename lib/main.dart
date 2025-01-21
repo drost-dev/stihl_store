@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stihl_store/bloc/auth/auth_bloc.dart';
 import 'package:stihl_store/router/app_router.dart';
+import 'package:stihl_store/themes/default.dart';
 
 void main() {
   GetIt.I.registerLazySingleton(() => AuthBloc());
@@ -15,6 +16,8 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: defaultTheme,
+      debugShowCheckedModeBanner: false,
       routerConfig: router.config(),
     );
   }
