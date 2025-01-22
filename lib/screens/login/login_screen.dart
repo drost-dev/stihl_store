@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stihl_store/bloc/auth/auth_bloc.dart';
+import 'package:stihl_store/router/app_router.dart';
 
 @RoutePage()
 class LoginScreen extends StatefulWidget {
@@ -14,6 +15,13 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _authBloc = GetIt.I<AuthBloc>();
+  String _phone = '';
+
+  @override
+  void initState() {
+    _authBloc.add(AuthLoad());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +58,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 29,
                           child: TextField(
+                            onChanged: (value) => setState(() {
+                              _phone = value;
+                            }),
                             decoration: InputDecoration(
                               hintText: 'Номер мобильного телефона',
                               hintStyle: theme.textTheme.headlineMedium,
@@ -70,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           child: ElevatedButton(
                             onPressed: () {
-                              context.router.pushNamed('/password');
+                              context.router.push(PasswordRoute(phone: _phone));
                             },
                             style: TextButton.styleFrom(
                               backgroundColor: theme.colorScheme.primary,

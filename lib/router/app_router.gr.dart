@@ -96,10 +96,17 @@ class OtpRouteArgs {
 
 /// generated route for
 /// [PasswordScreen]
-class PasswordRoute extends PageRouteInfo<void> {
-  const PasswordRoute({List<PageRouteInfo>? children})
-      : super(
+class PasswordRoute extends PageRouteInfo<PasswordRouteArgs> {
+  PasswordRoute({
+    Key? key,
+    required String phone,
+    List<PageRouteInfo>? children,
+  }) : super(
           PasswordRoute.name,
+          args: PasswordRouteArgs(
+            key: key,
+            phone: phone,
+          ),
           initialChildren: children,
         );
 
@@ -108,9 +115,29 @@ class PasswordRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const PasswordScreen();
+      final args = data.argsAs<PasswordRouteArgs>();
+      return PasswordScreen(
+        key: args.key,
+        phone: args.phone,
+      );
     },
   );
+}
+
+class PasswordRouteArgs {
+  const PasswordRouteArgs({
+    this.key,
+    required this.phone,
+  });
+
+  final Key? key;
+
+  final String phone;
+
+  @override
+  String toString() {
+    return 'PasswordRouteArgs{key: $key, phone: $phone}';
+  }
 }
 
 /// generated route for

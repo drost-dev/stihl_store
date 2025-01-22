@@ -6,7 +6,8 @@ import 'package:stihl_store/bloc/auth/auth_bloc.dart';
 
 @RoutePage()
 class PasswordScreen extends StatefulWidget {
-  const PasswordScreen({super.key});
+  const PasswordScreen({super.key, required this.phone});
+  final String phone;
 
   @override
   State<PasswordScreen> createState() => _PasswordScreenState();
@@ -14,6 +15,7 @@ class PasswordScreen extends StatefulWidget {
 
 class _PasswordScreenState extends State<PasswordScreen> {
   final _authBloc = GetIt.I<AuthBloc>();
+  String _password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +62,11 @@ class _PasswordScreenState extends State<PasswordScreen> {
                   SizedBox(
                     height: 29,
                     child: TextField(
+                      onChanged: (value) {
+                        setState(() {
+                          _password = value;
+                        });
+                      },
                       decoration: InputDecoration(
                         hintText: 'Введите пароль',
                         hintStyle: theme.textTheme.headlineMedium,
@@ -90,7 +97,9 @@ class _PasswordScreenState extends State<PasswordScreen> {
                       borderRadius: BorderRadius.circular(7),
                     ),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _authBloc.add(AuthLogin(widget.phone, _password));
+                      },
                       style: TextButton.styleFrom(
                         backgroundColor: theme.colorScheme.primary,
                         shape: RoundedRectangleBorder(
@@ -108,7 +117,13 @@ class _PasswordScreenState extends State<PasswordScreen> {
             ),
           );
         },
-        listener: (context, state) {},
+        listener: (context, state) {
+          switch (state) {
+            case AuthSuccess():
+              print('Logged in successfully');
+              break;
+          }
+        },
       ),
     );
   }
