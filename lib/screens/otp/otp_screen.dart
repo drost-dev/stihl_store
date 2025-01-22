@@ -9,7 +9,8 @@ import 'package:stihl_store/themes/default.dart';
 
 @RoutePage()
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({super.key});
+  const OtpScreen({super.key, this.signup = false});
+  final bool signup;
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -44,6 +45,14 @@ class _OtpScreenState extends State<OtpScreen> {
   }
 
   @override
+  void dispose() {
+    setState(() {
+      t.cancel();
+    });
+    super.dispose();
+  }
+
+  @override
   void initState() {
     _runTimer();
     super.initState();
@@ -66,7 +75,7 @@ class _OtpScreenState extends State<OtpScreen> {
           ),
         ),
         title: Text(
-          'Вход',
+          widget.signup ? 'Регистрация' : 'Вход',
           style: theme.textTheme.displayLarge,
         ),
         centerTitle: true,
@@ -86,10 +95,10 @@ class _OtpScreenState extends State<OtpScreen> {
                 children: [
                   Image.asset('images/logo.png'),
                   const SizedBox(height: 58),
-                  Text(
+                  !widget.signup ? Text(
                     'Вход в приложение Магазин Строитель',
                     style: theme.textTheme.labelLarge,
-                  ),
+                  ) : const SizedBox(),
                   const SizedBox(height: 9),
                   SizedBox(
                     height: 29,
@@ -137,7 +146,11 @@ class _OtpScreenState extends State<OtpScreen> {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                        context.router.pushNamed('/change_password');
+                        if (widget.signup) {
+                          print('sign up');
+                        } else {
+                          context.router.pushNamed('/change_password');
+                        }
                       },
                       style: TextButton.styleFrom(
                         backgroundColor: theme.colorScheme.primary,
@@ -146,7 +159,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         ),
                       ),
                       child: Text(
-                        'Продолжить',
+                        widget.signup ? 'Подтвердить' : 'Продолжить',
                         style: theme.textTheme.headlineLarge,
                       ),
                     ),

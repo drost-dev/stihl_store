@@ -49,10 +49,17 @@ class LoginRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [OtpScreen]
-class OtpRoute extends PageRouteInfo<void> {
-  const OtpRoute({List<PageRouteInfo>? children})
-      : super(
+class OtpRoute extends PageRouteInfo<OtpRouteArgs> {
+  OtpRoute({
+    Key? key,
+    bool signup = false,
+    List<PageRouteInfo>? children,
+  }) : super(
           OtpRoute.name,
+          args: OtpRouteArgs(
+            key: key,
+            signup: signup,
+          ),
           initialChildren: children,
         );
 
@@ -61,9 +68,30 @@ class OtpRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const OtpScreen();
+      final args =
+          data.argsAs<OtpRouteArgs>(orElse: () => const OtpRouteArgs());
+      return OtpScreen(
+        key: args.key,
+        signup: args.signup,
+      );
     },
   );
+}
+
+class OtpRouteArgs {
+  const OtpRouteArgs({
+    this.key,
+    this.signup = false,
+  });
+
+  final Key? key;
+
+  final bool signup;
+
+  @override
+  String toString() {
+    return 'OtpRouteArgs{key: $key, signup: $signup}';
+  }
 }
 
 /// generated route for
@@ -100,6 +128,25 @@ class RestoreRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const RestoreScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [SignUpScreen]
+class SignUpRoute extends PageRouteInfo<void> {
+  const SignUpRoute({List<PageRouteInfo>? children})
+      : super(
+          SignUpRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignUpRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SignUpScreen();
     },
   );
 }

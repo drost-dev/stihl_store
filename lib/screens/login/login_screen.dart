@@ -87,20 +87,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
-                  // TextButton(
-                  //   onPressed: () {},
-                  //   style: TextButton.styleFrom(
-                  //     padding: EdgeInsets.zero,
-                  //     minimumSize: Size.zero,
-                  //     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  //   ),
-                  //   child: Text(
-                  //     'Зарегистрироваться',
-                  //     style: theme.textTheme.labelLarge,
-                  //   ),
-                  // ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      context.router.pushNamed('/signup');
+                    },
                     child: Text(
                       'Зарегистрироваться',
                       style: theme.textTheme.labelLarge,

@@ -14,6 +14,8 @@ class ChangePasswordScreen extends StatefulWidget {
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final _authBloc = GetIt.I<AuthBloc>();
+  bool _isPasswordHidden = true;
+  bool _isConfirmationPasswordHidden = true;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +62,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   SizedBox(
                     height: 29,
                     child: TextField(
+                      obscureText: _isPasswordHidden,
                       decoration: InputDecoration(
                         hintText: 'Придумайте новый пароль',
                         hintStyle: theme.textTheme.headlineMedium,
@@ -69,7 +72,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                _isPasswordHidden = !_isPasswordHidden;
+                              });
+                            },
                             icon: const ImageIcon(
                               AssetImage('icons/eye.png'),
                             ),
@@ -87,6 +94,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   SizedBox(
                     height: 29,
                     child: TextField(
+                      obscureText: _isConfirmationPasswordHidden,
                       decoration: InputDecoration(
                         hintText: 'Подтвердите пароль',
                         hintStyle: theme.textTheme.headlineMedium,
@@ -96,7 +104,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                _isConfirmationPasswordHidden = !_isConfirmationPasswordHidden;
+                              });
+                            },
                             icon: const ImageIcon(
                               AssetImage('icons/eye.png'),
                             ),
@@ -119,7 +131,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                        context.router.pushNamed('/otp');
+                        
                       },
                       style: TextButton.styleFrom(
                         backgroundColor: theme.colorScheme.primary,
