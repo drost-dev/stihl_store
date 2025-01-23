@@ -11,10 +11,17 @@ part of 'app_router.dart';
 
 /// generated route for
 /// [ChangePasswordScreen]
-class ChangePasswordRoute extends PageRouteInfo<void> {
-  const ChangePasswordRoute({List<PageRouteInfo>? children})
-      : super(
+class ChangePasswordRoute extends PageRouteInfo<ChangePasswordRouteArgs> {
+  ChangePasswordRoute({
+    Key? key,
+    required String phone,
+    List<PageRouteInfo>? children,
+  }) : super(
           ChangePasswordRoute.name,
+          args: ChangePasswordRouteArgs(
+            key: key,
+            phone: phone,
+          ),
           initialChildren: children,
         );
 
@@ -23,9 +30,29 @@ class ChangePasswordRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ChangePasswordScreen();
+      final args = data.argsAs<ChangePasswordRouteArgs>();
+      return ChangePasswordScreen(
+        key: args.key,
+        phone: args.phone,
+      );
     },
   );
+}
+
+class ChangePasswordRouteArgs {
+  const ChangePasswordRouteArgs({
+    this.key,
+    required this.phone,
+  });
+
+  final Key? key;
+
+  final String phone;
+
+  @override
+  String toString() {
+    return 'ChangePasswordRouteArgs{key: $key, phone: $phone}';
+  }
 }
 
 /// generated route for
@@ -52,12 +79,14 @@ class LoginRoute extends PageRouteInfo<void> {
 class OtpRoute extends PageRouteInfo<OtpRouteArgs> {
   OtpRoute({
     Key? key,
+    required String phone,
     bool signup = false,
     List<PageRouteInfo>? children,
   }) : super(
           OtpRoute.name,
           args: OtpRouteArgs(
             key: key,
+            phone: phone,
             signup: signup,
           ),
           initialChildren: children,
@@ -68,10 +97,10 @@ class OtpRoute extends PageRouteInfo<OtpRouteArgs> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args =
-          data.argsAs<OtpRouteArgs>(orElse: () => const OtpRouteArgs());
+      final args = data.argsAs<OtpRouteArgs>();
       return OtpScreen(
         key: args.key,
+        phone: args.phone,
         signup: args.signup,
       );
     },
@@ -81,16 +110,19 @@ class OtpRoute extends PageRouteInfo<OtpRouteArgs> {
 class OtpRouteArgs {
   const OtpRouteArgs({
     this.key,
+    required this.phone,
     this.signup = false,
   });
 
   final Key? key;
 
+  final String phone;
+
   final bool signup;
 
   @override
   String toString() {
-    return 'OtpRouteArgs{key: $key, signup: $signup}';
+    return 'OtpRouteArgs{key: $key, phone: $phone, signup: $signup}';
   }
 }
 

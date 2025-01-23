@@ -11,6 +11,12 @@ final class AuthLoadingError extends AuthState {}
 
 final class AuthLoaded extends AuthState {}
 
+final class AuthWaitingSignupConfirmation extends AuthState {}
+
+final class AuthWaitingResetPassword extends AuthState {}
+
+final class AuthWaitingNewPassword extends AuthState {}
+
 final class AuthError extends AuthState {
   final String message;
 

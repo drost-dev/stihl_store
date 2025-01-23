@@ -9,8 +9,9 @@ import 'package:stihl_store/themes/default.dart';
 
 @RoutePage()
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({super.key, this.signup = false});
+  const OtpScreen({super.key, required this.phone, this.signup = false});
   final bool signup;
+  final String phone;
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -18,6 +19,7 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   final _authBloc = GetIt.I<AuthBloc>();
+  String _code = '';
   int timerValue = 30;
   bool _isActive = false;
   late Timer t;
@@ -103,6 +105,11 @@ class _OtpScreenState extends State<OtpScreen> {
                   SizedBox(
                     height: 29,
                     child: TextField(
+                      onChanged: (value) {
+                        setState(() {
+                          _code = value;
+                        });
+                      },
                       decoration: InputDecoration(
                         hintText: 'Код из смс',
                         hintStyle: theme.textTheme.headlineMedium,
@@ -147,9 +154,9 @@ class _OtpScreenState extends State<OtpScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (widget.signup) {
-                          print('sign up');
+                          _authBloc.add(AuthConfirmSignUp(widget.phone, _code));
                         } else {
-                          context.router.pushNamed('/change_password');
+                          _authBloc.add(AuthResetPassword(email: widget.phone));
                         }
                       },
                       style: TextButton.styleFrom(
@@ -169,7 +176,16 @@ class _OtpScreenState extends State<OtpScreen> {
             ),
           );
         },
-        listener: (context, state) {},
+        listener: (context, state) {
+          switch (state) {
+            case AuthSuccess():
+              print('NAVIGATE TO HOME');
+              break;
+            case AuthWaitingResetPassword():
+              context.router.pushNamed('/change_password');
+              break;
+          }
+        },
       ),
     );
   }

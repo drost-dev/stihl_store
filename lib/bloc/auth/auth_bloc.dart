@@ -18,7 +18,42 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           break;
         case AuthLogin():
           try {
+            emit(AuthLoading());
             await sbRepo.login(email: event.email, password: event.password);
+            emit(AuthSuccess());
+          } catch (e) {
+            switch (e) {
+              case AuthException():
+                emit(AuthError(e.message));
+                emit(AuthLoaded());
+                break;
+            }
+          }
+          break;
+        case AuthSignUp():
+          try {
+            emit(AuthLoading());
+            await sbRepo.signUp(
+              name: event.name,
+              surname: event.surname,
+              login: event.login,
+              password: event.password,
+              email: event.email,
+            );
+            emit(AuthWaitingSignupConfirmation());
+          } catch (e) {
+            switch (e) {
+              case AuthException():
+                emit(AuthError(e.message));
+                emit(AuthLoaded());
+                break;
+            }
+          }
+          break;
+        case AuthConfirmSignUp():
+          try {
+            emit(AuthLoading());
+            await sbRepo.confirmSignUp(email: event.phone, code: event.code);
             emit(AuthSuccess());
           } catch (e) {
             switch (e) {
@@ -28,14 +63,38 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             }
           }
           break;
-        case AuthSignUp():
+        case AuthRequestPasswordReset():
           try {
-            await sbRepo.signUp(
-              name: event.name,
-              surname: event.surname,
-              login: event.login,
-              password: event.password,
+            emit(AuthLoading());
+            await sbRepo.requestPasswordReset(email: event.email);
+            emit(AuthWaitingResetPassword());
+          } catch (e) {
+            switch (e) {
+              case AuthException():
+                emit(AuthError(e.message));
+                break;
+            }
+          }
+          break;
+        case AuthResetPassword():
+          try {
+            emit(AuthLoading());
+            await sbRepo.requestPasswordReset(email: event.email);
+            emit(AuthWaitingNewPassword());
+          } catch (e) {
+            switch (e) {
+              case AuthException():
+                emit(AuthError(e.message));
+                break;
+            }
+          }
+          break;
+        case AuthSetNewPassword():
+          try {
+            emit(AuthLoading());
+            await sbRepo.setNewPassword(
               email: event.email,
+              newPassword: event.password,
             );
             emit(AuthSuccess());
           } catch (e) {

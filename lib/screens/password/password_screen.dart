@@ -120,8 +120,12 @@ class _PasswordScreenState extends State<PasswordScreen> {
         listener: (context, state) {
           switch (state) {
             case AuthSuccess():
-              print('Logged in successfully');
+              print('NAVIGATE TO HOME');
               break;
+            case AuthError():
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.message)),
+              );
           }
         },
       ),

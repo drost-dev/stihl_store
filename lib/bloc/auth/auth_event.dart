@@ -24,8 +24,52 @@ class AuthSignUp extends AuthEvent {
   final String password;
   final String email;
 
-  AuthSignUp(this.email, this.password, this.name, this.surname, this.login);
+  AuthSignUp(
+      {required this.email,
+      required this.password,
+      required this.name,
+      required this.surname,
+      required this.login});
 
   @override
   List<Object?> get props => [name, surname, login, password, email];
+}
+
+class AuthConfirmSignUp extends AuthEvent {
+  final String phone;
+  final String code;
+
+  AuthConfirmSignUp(this.phone, this.code);
+
+  @override
+  List<Object?> get props => [phone, code];
+}
+
+class AuthRequestPasswordReset extends AuthEvent {
+  final String email;
+
+  AuthRequestPasswordReset({required this.email});
+
+  @override
+  List<Object?> get props => [email];
+}
+
+class AuthResetPassword extends AuthEvent {
+  final String email;
+  final String code;
+
+  AuthResetPassword({required this.email, required this.code});
+
+  @override
+  List<Object?> get props => [email, code];
+}
+
+class AuthSetNewPassword extends AuthEvent {
+  final String email;
+  final String password;
+
+  AuthSetNewPassword({required this.password, required this.email});
+
+  @override
+  List<Object?> get props => [email, password];
 }

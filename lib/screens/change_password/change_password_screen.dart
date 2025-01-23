@@ -6,7 +6,8 @@ import 'package:stihl_store/bloc/auth/auth_bloc.dart';
 
 @RoutePage()
 class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({super.key});
+  const ChangePasswordScreen({super.key, required this.phone});
+  final String phone;
 
   @override
   State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
@@ -14,6 +15,8 @@ class ChangePasswordScreen extends StatefulWidget {
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final _authBloc = GetIt.I<AuthBloc>();
+  String _password = '';
+  String _passwordConfirmation = '';
   bool _isPasswordHidden = true;
   bool _isConfirmationPasswordHidden = true;
 
@@ -63,6 +66,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     height: 29,
                     child: TextField(
                       obscureText: _isPasswordHidden,
+                      onChanged: (value) {
+                        setState(() {
+                          _password = value;
+                        });
+                      },
                       decoration: InputDecoration(
                         hintText: 'Придумайте новый пароль',
                         hintStyle: theme.textTheme.headlineMedium,
@@ -95,6 +103,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     height: 29,
                     child: TextField(
                       obscureText: _isConfirmationPasswordHidden,
+                      onChanged: (value) {
+                        setState(() {
+                          _passwordConfirmation = value;
+                        });
+                      },
                       decoration: InputDecoration(
                         hintText: 'Подтвердите пароль',
                         hintStyle: theme.textTheme.headlineMedium,
@@ -106,7 +119,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             ),
                             onPressed: () {
                               setState(() {
-                                _isConfirmationPasswordHidden = !_isConfirmationPasswordHidden;
+                                _isConfirmationPasswordHidden =
+                                    !_isConfirmationPasswordHidden;
                               });
                             },
                             icon: const ImageIcon(
@@ -130,9 +144,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       borderRadius: BorderRadius.circular(7),
                     ),
                     child: ElevatedButton(
-                      onPressed: () {
-                        
-                      },
+                      onPressed: state is AuthLoading
+                          ? null
+                          : () {
+                              _authBloc.add(AuthSetNewPassword(_password, code, email: widget.phone))
+                            },
                       style: TextButton.styleFrom(
                         backgroundColor: theme.colorScheme.primary,
                         shape: RoundedRectangleBorder(

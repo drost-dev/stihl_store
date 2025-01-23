@@ -16,6 +16,11 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final _authBloc = GetIt.I<AuthBloc>();
   bool _isPasswordHidden = true;
+  String _name = '';
+  String _surname = '';
+  String _login = '';
+  String _password = '';
+  String _phone = '';
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +66,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           height: 29,
                           child: TextField(
+                            onChanged: (value) {
+                              setState(() {
+                                _name = value;
+                              });
+                            },
                             decoration: InputDecoration(
                               hintText: 'Имя',
                               hintStyle: theme.textTheme.headlineMedium,
@@ -76,6 +86,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           height: 29,
                           child: TextField(
+                            onChanged: (value) {
+                              setState(() {
+                                _surname = value;
+                              });
+                            },
                             decoration: InputDecoration(
                               hintText: 'Фамилия',
                               hintStyle: theme.textTheme.headlineMedium,
@@ -91,6 +106,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           height: 29,
                           child: TextField(
+                            onChanged: (value) {
+                              setState(() {
+                                _login = value;
+                              });
+                            },
                             decoration: InputDecoration(
                               hintText: 'Придумайте логин',
                               hintStyle: theme.textTheme.headlineMedium,
@@ -106,6 +126,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           height: 29,
                           child: TextField(
+                            onChanged: (value) {
+                              setState(() {
+                                _password = value;
+                              });
+                            },
                             obscureText: _isPasswordHidden,
                             decoration: InputDecoration(
                               hintText: 'Придумайте новый пароль',
@@ -138,6 +163,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           height: 29,
                           child: TextField(
+                            onChanged: (value) {
+                              setState(() {
+                                _phone = value;
+                              });
+                            },
                             decoration: InputDecoration(
                               hintText: 'Номер мобильного телефона',
                               hintStyle: theme.textTheme.headlineMedium,
@@ -157,9 +187,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             borderRadius: BorderRadius.circular(7),
                           ),
                           child: ElevatedButton(
-                            onPressed: () {
-                              context.router.push(OtpRoute(signup: true));
-                            },
+                            onPressed: state is AuthLoading
+                                ? null
+                                : () {
+                                    _authBloc.add(AuthSignUp(
+                                      name: _name,
+                                      surname: _surname,
+                                      login: _login,
+                                      password: _password,
+                                      email: _phone,
+                                    ));
+                                  },
                             style: TextButton.styleFrom(
                               backgroundColor: theme.colorScheme.primary,
                               shape: RoundedRectangleBorder(
@@ -180,7 +218,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
           );
         },
-        listener: (context, state) {},
+        listener: (context, state) {
+          switch (state) {
+            case AuthWaitingSignupConfirmation():
+              context.router.push(OtpRoute(phone: _phone, signup: true));
+              break;
+            case AuthError():
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.message)),
+              );
+              break;
+          }
+        },
       ),
     );
   }

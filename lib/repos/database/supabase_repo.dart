@@ -22,10 +22,20 @@ class SupabaseRepo implements DatabaseRepo {
       required String login,
       required String password,
       required String email}) async {
-    return await _sb.auth.signUp(
+    var a = await _sb.auth.signUp(
       password: password,
       email: email,
       data: {'name': name, 'surname': surname, 'login': login},
+    );
+    return a;
+  }
+
+  Future<AuthResponse> confirmSignUp(
+      {required String email, required String code}) async {
+    return await _sb.auth.verifyOTP(
+      type: OtpType.signup,
+      email: email,
+      token: code,
     );
   }
 
@@ -35,5 +45,23 @@ class SupabaseRepo implements DatabaseRepo {
       password: password,
       email: email,
     );
+  }
+
+  Future<void> requestPasswordReset({required String email}) async {
+    await _sb.auth.resetPasswordForEmail(email);
+  }
+
+  Future<void> resetPassword({
+    required String email,
+    required String code,
+  }) async {
+    await _sb.auth.verifyOTP(type: OtpType.recovery, email: email, token: code);
+  }
+
+  Future<void> setNewPassword({
+    required String email,
+    required String newPassword,
+  }) async {
+    await _sb.auth.updateUser(UserAttributes(password: newPassword));
   }
 }
