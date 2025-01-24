@@ -192,6 +192,25 @@ class RestoreRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SelectAddressScreen]
+class SelectAddressRoute extends PageRouteInfo<void> {
+  const SelectAddressRoute({List<PageRouteInfo>? children})
+      : super(
+          SelectAddressRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SelectAddressRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SelectAddressScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SignUpScreen]
 class SignUpRoute extends PageRouteInfo<void> {
   const SignUpRoute({List<PageRouteInfo>? children})

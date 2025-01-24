@@ -56,7 +56,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                   const SizedBox(height: 58),
                   Text(
                     'Вход в приложение Магазин Строитель',
-                    style: theme.textTheme.labelLarge,
+                    style: theme.textTheme.titleLarge,
                   ),
                   const SizedBox(height: 20),
                   SizedBox(
@@ -85,7 +85,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                       onTap: () {context.router.pushNamed('/restore');},
                       child: Text(
                         'Напомнить пароль',
-                        style: theme.textTheme.labelLarge,
+                        style: theme.textTheme.titleLarge,
                       ),
                     ),
                   ),

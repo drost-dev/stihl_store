@@ -5,6 +5,7 @@ import 'package:stihl_store/screens/login/login_screen.dart';
 import 'package:stihl_store/screens/otp/otp_screen.dart';
 import 'package:stihl_store/screens/password/password_screen.dart';
 import 'package:stihl_store/screens/restore/restore_screen.dart';
+import 'package:stihl_store/screens/select_address/select_address.dart';
 import 'package:stihl_store/screens/signup/signup_screen.dart';
 
 part 'app_router.gr.dart';
@@ -16,7 +17,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: LoginRoute.page,
           path: '/login',
-          initial: true,
+          // initial: true,
         ),
         AutoRoute(
           page: SignUpRoute.page,
@@ -37,6 +38,11 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: ChangePasswordRoute.page,
           path: '/change_password',
+        ),
+        AutoRoute(
+          page: SelectAddressRoute.page,
+          path: '/address',
+          initial: true,
         ),
       ];
 }

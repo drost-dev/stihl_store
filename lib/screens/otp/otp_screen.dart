@@ -99,7 +99,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   const SizedBox(height: 58),
                   !widget.signup ? Text(
                     'Вход в приложение Магазин Строитель',
-                    style: theme.textTheme.labelLarge,
+                    style: theme.textTheme.titleLarge,
                   ) : const SizedBox(),
                   const SizedBox(height: 9),
                   SizedBox(
@@ -130,7 +130,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       },
                       child: Text(
                         'Отправить ещё раз через $timerValue секунд',
-                        style: theme.textTheme.labelLarge?.copyWith(
+                        style: theme.textTheme.titleLarge?.copyWith(
                           color: theme.colorScheme.lightGrey,
                         ),
                       ),
@@ -141,7 +141,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Неверный номер',
-                      style: theme.textTheme.labelLarge?.copyWith(),
+                      style: theme.textTheme.titleLarge?.copyWith(),
                     ),
                   ),
                   const SizedBox(height: 31),
@@ -156,7 +156,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         if (widget.signup) {
                           _authBloc.add(AuthConfirmSignUp(widget.phone, _code));
                         } else {
-                          _authBloc.add(AuthResetPassword(email: widget.phone));
+                          _authBloc.add(AuthResetPassword(email: widget.phone, code: _code));
                         }
                       },
                       style: TextButton.styleFrom(

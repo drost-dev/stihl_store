@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stihl_store/bloc/auth/auth_bloc.dart';
+import 'package:stihl_store/router/app_router.dart';
 
 @RoutePage()
 class ChangePasswordScreen extends StatefulWidget {
@@ -59,7 +60,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   const SizedBox(height: 58),
                   Text(
                     'Вход в приложение Магазин Строитель',
-                    style: theme.textTheme.labelLarge,
+                    style: theme.textTheme.titleLarge,
                   ),
                   const SizedBox(height: 9),
                   SizedBox(
@@ -147,7 +148,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       onPressed: state is AuthLoading
                           ? null
                           : () {
-                              _authBloc.add(AuthSetNewPassword(_password, code, email: widget.phone))
+                              if (_password == _passwordConfirmation) {
+                                _authBloc.add(AuthSetNewPassword(password: _password, email: widget.phone));
+                              } else {
+                                print('password confirmation doesnt equal password');
+                              }
                             },
                       style: TextButton.styleFrom(
                         backgroundColor: theme.colorScheme.primary,
@@ -166,7 +171,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             ),
           );
         },
-        listener: (context, state) {},
+        listener: (context, state) {
+          switch (state) {
+            case AuthWaitingNewPassword():
+              context.router.push(ChangePasswordRoute(phone: widget.phone));
+              break;
+            default:
+          }
+        },
       ),
     );
   }

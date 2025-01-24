@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 58),
                         Text(
                           'Вход в приложение Магазин Строитель',
-                          style: theme.textTheme.labelLarge,
+                          style: theme.textTheme.titleLarge,
                         ),
                         const SizedBox(height: 20),
                         SizedBox(
@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     child: Text(
                       'Зарегистрироваться',
-                      style: theme.textTheme.labelLarge,
+                      style: theme.textTheme.titleLarge,
                     ),
                   ),
                 ],

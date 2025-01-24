@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stihl_store/bloc/auth/auth_bloc.dart';
+import 'package:stihl_store/router/app_router.dart';
 
 @RoutePage()
 class RestoreScreen extends StatefulWidget {
@@ -14,6 +15,7 @@ class RestoreScreen extends StatefulWidget {
 
 class _RestoreScreenState extends State<RestoreScreen> {
   final _authBloc = GetIt.I<AuthBloc>();
+  String _phone = '';
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +56,17 @@ class _RestoreScreenState extends State<RestoreScreen> {
                   const SizedBox(height: 58),
                   Text(
                     'Вход в приложение Магазин Строитель',
-                    style: theme.textTheme.labelLarge,
+                    style: theme.textTheme.titleLarge,
                   ),
                   const SizedBox(height: 20),
                   SizedBox(
                     height: 29,
                     child: TextField(
+                      onChanged: (value) {
+                        setState(() {
+                          _phone = value;
+                        });
+                      },
                       decoration: InputDecoration(
                         hintText: 'Номер мобильного телефона',
                         hintStyle: theme.textTheme.headlineMedium,
@@ -79,7 +86,9 @@ class _RestoreScreenState extends State<RestoreScreen> {
                       borderRadius: BorderRadius.circular(7),
                     ),
                     child: ElevatedButton(
-                      onPressed: () {context.router.pushNamed('/otp');},
+                      onPressed: () {
+                        _authBloc.add(AuthRequestPasswordReset(email: _phone));
+                        },
                       style: TextButton.styleFrom(
                         backgroundColor: theme.colorScheme.primary,
                         shape: RoundedRectangleBorder(
@@ -97,7 +106,20 @@ class _RestoreScreenState extends State<RestoreScreen> {
             ),
           );
         },
-        listener: (context, state) {},
+        listener: (context, state) {
+          switch (state) {
+            case AuthWaitingResetPassword():
+              context.router.push(OtpRoute(phone: _phone));
+              break;
+            case AuthError():
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.message),
+                ),
+              );
+              break;
+          }
+        },
       ),
     );
   }

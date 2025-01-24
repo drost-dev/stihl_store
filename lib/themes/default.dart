@@ -10,6 +10,7 @@ var defaultTheme = ThemeData(
     primary: _orange,
     onPrimary: Colors.white,
     surface: Colors.white,
+    onSurface: _lightGrey,
   ),
   fontFamily: GoogleFonts.inter().fontFamily,
   textTheme: TextTheme(
@@ -31,11 +32,18 @@ var defaultTheme = ThemeData(
       letterSpacing: 0,
       color: _lightGrey,
     ),
-    labelLarge: TextStyle(
+    titleLarge: TextStyle(
       fontWeight: FontWeight.normal,
       fontSize: 15,
       letterSpacing: 0,
       color: _orange,
+    ),
+    labelSmall: TextStyle(
+      fontWeight: FontWeight.normal,
+      fontSize: 10,
+      height: 10/14,
+      letterSpacing: 0,
+      color: Colors.black.withOpacity(0.85),
     ),
   ),
 );
