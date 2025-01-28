@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:stihl_store/router/app_router.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -546,16 +547,191 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       drawerEdgeDragWidth: 180,
+      drawerScrimColor: theme.colorScheme.primary.withOpacity(0.51),
       drawer: Drawer(
-        shape: RoundedRectangleBorder(
+        backgroundColor: const Color.fromRGBO(237, 237, 237, 1),
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
         width: 180,
-
-        child: Column(
-          children: [
-            DrawerButton(),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(top: 45, left: 17, right: 22),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CircleAvatar(
+                backgroundColor: Colors.black,
+                radius: 17,
+              ),
+              const SizedBox(height: 7),
+              Text(
+                'Дмитрий Комарницкий',
+                style: theme.textTheme.labelMedium?.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 5),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'id 847122',
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const ImageIcon(
+                    AssetImage('icons/copy.png'),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 21),
+              GestureDetector(
+                onTap: () {
+                  context.router.maybePop();
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ImageIcon(
+                      const AssetImage('icons/home.png'),
+                      color: theme.colorScheme.primary,
+                    ),
+                    const SizedBox(width: 14),
+                    Text(
+                      'Главное меню',
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 15),
+              GestureDetector(
+                onTap: () {
+                  print('pressed button 2');
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ImageIcon(
+                      const AssetImage('icons/profile.png'),
+                      color: theme.colorScheme.primary,
+                    ),
+                    const SizedBox(width: 14),
+                    Text(
+                      'Мой профиль',
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 15),
+              GestureDetector(
+                onTap: () {
+                  print('pressed button 3');
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ImageIcon(
+                      const AssetImage('icons/cart.png'),
+                      color: theme.colorScheme.primary,
+                    ),
+                    const SizedBox(width: 14),
+                    Text(
+                      'Корзина',
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 15),
+              GestureDetector(
+                onTap: () {
+                  context.router.push(const SelectAddressRoute());
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ImageIcon(
+                      const AssetImage('icons/location.png'),
+                      color: theme.colorScheme.primary,
+                    ),
+                    const SizedBox(width: 14),
+                    Text(
+                      'Адрес',
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 15),
+              Divider(
+                color: theme.colorScheme.primary.withOpacity(0.38),
+                thickness: 1,
+              ),
+              const SizedBox(height: 15),
+              GestureDetector(
+                onTap: () {
+                  print('pressed button 5');
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ImageIcon(
+                      const AssetImage('icons/filters.png'),
+                      color: theme.colorScheme.primary,
+                    ),
+                    const SizedBox(width: 14),
+                    Text(
+                      'Настройки',
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 15),
+              GestureDetector(
+                onTap: () {
+                  print('pressed button 6');
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ImageIcon(
+                      const AssetImage('icons/search_2x.png'),
+                      color: theme.colorScheme.primary,
+                    ),
+                    const SizedBox(width: 14),
+                    Text(
+                      'Поиск',
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
