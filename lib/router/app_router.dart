@@ -36,7 +36,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: OtpRoute.page,
           path: '/otp',
-        ),
+        ), 
         AutoRoute(
           page: ChangePasswordRoute.page,
           path: '/change_password',

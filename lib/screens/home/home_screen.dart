@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:stihl_store/router/app_router.dart';
 
@@ -26,114 +25,117 @@ class _HomeScreenState extends State<HomeScreen> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size(double.infinity, 115),
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 36, left: 20, right: 20, bottom: 8),
-          child: Stack(
-            children: [
-              Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  constraints:
-                      const BoxConstraints(minHeight: 32, minWidth: 159),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Доставка курьером',
-                        style: theme.textTheme.labelSmall?.copyWith(
-                          color: theme.colorScheme.primary,
+        preferredSize: const Size(double.infinity, 70),
+        child: ColoredBox(
+          color: theme.colorScheme.surface,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 36, left: 20, right: 20),
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    constraints:
+                        const BoxConstraints(minHeight: 32, minWidth: 159),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Доставка курьером',
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: theme.colorScheme.primary,
+                          ),
                         ),
-                      ),
-                      Text(
-                        'ул. Миклухо-Маклая, 55, Москва',
-                        style: theme.textTheme.labelSmall,
-                      ),
-                    ],
+                        Text(
+                          'ул. Миклухо-Маклая, 55, Москва',
+                          style: theme.textTheme.labelSmall,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Positioned.fill(
-                left: 40,
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: ImageIcon(
-                    const AssetImage('icons/delivery.png'),
-                    color: theme.colorScheme.primary,
+                Positioned.fill(
+                  left: 18,
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: ImageIcon(
+                      const AssetImage('icons/delivery.png'),
+                      color: theme.colorScheme.primary,
+                    ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      constraints:
-                          const BoxConstraints(maxWidth: 287, maxHeight: 36),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.surface,
-                        borderRadius: BorderRadius.circular(18),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.25),
-                            blurRadius: 4,
-                            offset: const Offset(1, 1),
-                          ),
-                        ],
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 13,
-                        horizontal: 14,
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset('icons/search.png'),
-                          const SizedBox(width: 15),
-                          SizedBox(
-                            width: 234,
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                hintText: 'Поиск',
-                                border: InputBorder.none,
-                              ),
-                              style: theme.textTheme.labelSmall,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 36,
-                      height: 36,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: theme.colorScheme.surface,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.25),
-                            blurRadius: 4,
-                            offset: const Offset(1, 1),
-                          ),
-                        ],
-                      ),
-                      child: const ImageIcon(
-                        AssetImage('icons/filters.png'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
       body: SingleChildScrollView(
+        clipBehavior: Clip.none,
         child: Column(
           children: [
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 21, right: 21, bottom: 8, top: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    constraints:
+                        const BoxConstraints(maxWidth: 287, maxHeight: 36),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.surface,
+                      borderRadius: BorderRadius.circular(18),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          blurRadius: 4,
+                          offset: const Offset(1, 1),
+                        ),
+                      ],
+                    ),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'Поиск',
+                        hintStyle: theme.textTheme.labelSmall?.copyWith(
+                          color: const Color.fromRGBO(188, 188, 188, 1),
+                        ),
+                        border: InputBorder.none,
+                        // contentPadding: EdgeInsets.zero,
+                        contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 8),
+                        prefixIcon: const SizedBox.square(
+                          dimension: 10,
+                          child: ImageIcon(
+                            AssetImage('icons/search.png'),
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      style: theme.textTheme.labelSmall,
+                    ),
+                  ),
+                  Container(
+                    width: 36,
+                    height: 36,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: theme.colorScheme.surface,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          blurRadius: 4,
+                          offset: const Offset(1, 1),
+                        ),
+                      ],
+                    ),
+                    child: const ImageIcon(
+                      AssetImage('icons/filters.png'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Container(
               height: 53,
               decoration: BoxDecoration(
@@ -174,7 +176,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: const EdgeInsets.only(top: 11),
                           child: Align(
                             alignment: Alignment.topCenter,
-                            child: Image.asset('images/product1.png'),
+                            child: Container(
+                              constraints: const BoxConstraints(maxHeight: 128),
+                              child: Image.asset(
+                                'images/product1.png',
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
                           ),
                         ),
                         Padding(
@@ -216,24 +224,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                           color: theme.colorScheme.primary,
                                         ),
                                       ),
-                                      Container(
-                                        width: 59,
-                                        height: 13,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(1),
-                                          color: theme.colorScheme.primary,
-                                        ),
-                                        child: Text(
-                                          'ПОДРОБНЕЕ О МОДЕЛИ',
-                                          style: theme.textTheme.labelSmall
-                                              ?.copyWith(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 3,
-                                            height: 14 / 3,
-                                            letterSpacing: 0,
-                                            color: theme.colorScheme.surface,
+                                      GestureDetector(
+                                        onTap: () {
+                                          context.router
+                                              .push(const ProductRoute());
+                                        },
+                                        child: Container(
+                                          width: 59,
+                                          height: 13,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(1),
+                                            color: theme.colorScheme.primary,
+                                          ),
+                                          child: Text(
+                                            'ПОДРОБНЕЕ О МОДЕЛИ',
+                                            style: theme.textTheme.labelSmall
+                                                ?.copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 3,
+                                              height: 14 / 3,
+                                              letterSpacing: 0,
+                                              color: theme.colorScheme.surface,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -515,21 +529,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: theme.colorScheme.primary,
                                 ),
                               ),
-                              Container(
-                                width: 90,
-                                height: 13,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(1),
-                                  color: theme.colorScheme.primary,
-                                ),
-                                child: Text(
-                                  'ПОДРОБНЕЕ О МОДЕЛИ',
-                                  style: theme.textTheme.bodyLarge?.copyWith(
-                                    fontSize: 5,
-                                    height: 5 / 14,
-                                    letterSpacing: 0,
-                                    color: theme.colorScheme.surface,
+                              GestureDetector(
+                                onTap: () {
+                                  context.router.push(const ProductRoute());
+                                },
+                                child: Container(
+                                  width: 90,
+                                  height: 13,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(1),
+                                    color: theme.colorScheme.primary,
+                                  ),
+                                  child: Text(
+                                    'ПОДРОБНЕЕ О МОДЕЛИ',
+                                    style: theme.textTheme.bodyLarge?.copyWith(
+                                      fontSize: 5,
+                                      height: 5 / 14,
+                                      letterSpacing: 0,
+                                      color: theme.colorScheme.surface,
+                                    ),
                                   ),
                                 ),
                               ),
