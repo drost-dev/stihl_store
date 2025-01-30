@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:stihl_store/screens/cart/cart_screen.dart';
 import 'package:stihl_store/screens/change_password/change_password_screen.dart';
 import 'package:stihl_store/screens/home/home_screen.dart';
 import 'package:stihl_store/screens/login/login_screen.dart';
@@ -53,6 +54,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: ProductRoute.page,
           path: '/product',
+        ),
+        AutoRoute(
+          page: CartRoute.page,
+          path: '/cart',
         ),
       ];
 }

@@ -655,7 +655,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 15),
               GestureDetector(
                 onTap: () {
-                  print('pressed button 3');
+                  context.router.push(const CartRoute());
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
