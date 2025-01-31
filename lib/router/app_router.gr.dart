@@ -113,6 +113,25 @@ class LoginRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [OrderScreen]
+class OrderRoute extends PageRouteInfo<void> {
+  const OrderRoute({List<PageRouteInfo>? children})
+      : super(
+          OrderRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OrderRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const OrderScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [OtpScreen]
 class OtpRoute extends PageRouteInfo<OtpRouteArgs> {
   OtpRoute({
@@ -208,6 +227,25 @@ class PasswordRouteArgs {
   String toString() {
     return 'PasswordRouteArgs{key: $key, phone: $phone}';
   }
+}
+
+/// generated route for
+/// [PaymentScreen]
+class PaymentRoute extends PageRouteInfo<void> {
+  const PaymentRoute({List<PageRouteInfo>? children})
+      : super(
+          PaymentRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PaymentRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PaymentScreen();
+    },
+  );
 }
 
 /// generated route for

@@ -4,8 +4,10 @@ import 'package:stihl_store/screens/cart/cart_screen.dart';
 import 'package:stihl_store/screens/change_password/change_password_screen.dart';
 import 'package:stihl_store/screens/home/home_screen.dart';
 import 'package:stihl_store/screens/login/login_screen.dart';
+import 'package:stihl_store/screens/order/order_screen.dart';
 import 'package:stihl_store/screens/otp/otp_screen.dart';
 import 'package:stihl_store/screens/password/password_screen.dart';
+import 'package:stihl_store/screens/payment/payment_screen.dart';
 import 'package:stihl_store/screens/product/product_screen.dart';
 import 'package:stihl_store/screens/restore/restore_screen.dart';
 import 'package:stihl_store/screens/select_address/select_address.dart';
@@ -58,6 +60,14 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: CartRoute.page,
           path: '/cart',
+        ),
+        AutoRoute(
+          page: PaymentRoute.page,
+          path: '/payment',
+        ),
+        AutoRoute(
+          page: OrderRoute.page,
+          path: '/order',
         ),
       ];
 }

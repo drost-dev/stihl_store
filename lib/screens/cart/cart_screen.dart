@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:stihl_store/router/app_router.dart';
 
 @RoutePage()
 class CartScreen extends StatefulWidget {
@@ -70,10 +71,15 @@ class _CartScreenState extends State<CartScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ImageIcon(
-                    const AssetImage('icons/arrow_left.png'),
-                    size: 15,
-                    color: theme.colorScheme.primary,
+                  GestureDetector(
+                    onTap: () {
+                      context.router.maybePop();
+                    },
+                    child: ImageIcon(
+                      const AssetImage('icons/arrow_left.png'),
+                      size: 15,
+                      color: theme.colorScheme.primary,
+                    ),
                   ),
                   Text(
                     'Корзина',
@@ -566,6 +572,35 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   ),
                 ],
+              ),
+            ),
+            const SizedBox(height: 41),
+            GestureDetector(
+              onTap: () {
+                context.router.push(const PaymentRoute());
+              },
+              child: Container(
+                width: 200,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: theme.colorScheme.primary,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.25),
+                      blurRadius: 4,
+                      offset: const Offset(1, 1),
+                    ),
+                  ],
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  'Перейти к оплате',
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    color: theme.colorScheme.surface,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
               ),
             ),
           ],
