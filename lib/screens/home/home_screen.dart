@@ -603,6 +603,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const ImageIcon(
                     AssetImage('icons/copy.png'),
+                    size: 10,
                   ),
                 ],
               ),
@@ -632,7 +633,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 15),
               GestureDetector(
                 onTap: () {
-                  print('pressed button 2');
+                  context.router.push(const ProfileRoute());
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

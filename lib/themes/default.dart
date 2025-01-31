@@ -36,7 +36,7 @@ var defaultTheme = ThemeData(
       fontWeight: FontWeight.w500,
       fontSize: 20,
       letterSpacing: 0,
-      height: 20/14,
+      height: 14/20,
       color: Colors.white,
     ),
     titleLarge: TextStyle(

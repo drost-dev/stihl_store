@@ -113,6 +113,25 @@ class LoginRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [NotificationsScreen]
+class NotificationsRoute extends PageRouteInfo<void> {
+  const NotificationsRoute({List<PageRouteInfo>? children})
+      : super(
+          NotificationsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'NotificationsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const NotificationsScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [OrderScreen]
 class OrderRoute extends PageRouteInfo<void> {
   const OrderRoute({List<PageRouteInfo>? children})
@@ -268,6 +287,25 @@ class ProductRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ProfileScreen]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          ProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfileScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [RestoreScreen]
 class RestoreRoute extends PageRouteInfo<void> {
   const RestoreRoute({List<PageRouteInfo>? children})
@@ -301,6 +339,25 @@ class SelectAddressRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const SelectAddressScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [SettingsScreen]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute({List<PageRouteInfo>? children})
+      : super(
+          SettingsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SettingsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SettingsScreen();
     },
   );
 }
