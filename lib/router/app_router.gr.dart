@@ -306,6 +306,25 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PurchaseHistoryScreen]
+class PurchaseHistoryRoute extends PageRouteInfo<void> {
+  const PurchaseHistoryRoute({List<PageRouteInfo>? children})
+      : super(
+          PurchaseHistoryRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PurchaseHistoryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PurchaseHistoryScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [RestoreScreen]
 class RestoreRoute extends PageRouteInfo<void> {
   const RestoreRoute({List<PageRouteInfo>? children})

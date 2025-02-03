@@ -128,25 +128,30 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 18),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ImageIcon(
-                      const AssetImage('icons/cart_2x.png'),
-                      color: theme.colorScheme.primary,
-                      size: 30,
-                    ),
-                    const SizedBox(width: 16),
-                    Text(
-                      'История покупок',
-                      style: theme.textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16,
-                        height: 14 / 16,
-                        color: Colors.black,
+                GestureDetector(
+                  onTap: () {
+                    context.router.push(const PurchaseHistoryRoute());
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ImageIcon(
+                        const AssetImage('icons/cart_2x.png'),
+                        color: theme.colorScheme.primary,
+                        size: 30,
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 16),
+                      Text(
+                        'История покупок',
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16,
+                          height: 14 / 16,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 18),
                 GestureDetector(
