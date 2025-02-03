@@ -5,6 +5,21 @@ import 'package:flutter/material.dart';
 class NotificationsScreen extends StatelessWidget {
   const NotificationsScreen({super.key});
 
+  final notifs = const {
+    0: {
+      'title': 'Заказ №73522 у курьера',
+      'desc': 'На данном этапе происходит транспортировка товаров до пункта назначения',
+    },
+    1: {
+      'title': 'Заказ №73522 принят в работу',
+      'desc': 'Заказ оплачен. На данном этапе производится комплектация и упаковка товаров',
+    },
+    2: {
+      'title': 'Заказ №73522 создан',
+      'desc': 'Заказ оплачен и ожидает обработки',
+    },
+  };
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -120,6 +135,7 @@ class NotificationsScreen extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
@@ -129,7 +145,7 @@ class NotificationsScreen extends StatelessWidget {
                               ),
                               const SizedBox(width: 13),
                               Text(
-                                'Заказ №73522 принят в работу',
+                                notifs[index]!['title']!,
                                 style: theme.textTheme.titleSmall?.copyWith(
                                   fontWeight: FontWeight.normal,
                                   color: Colors.black,
@@ -142,7 +158,7 @@ class NotificationsScreen extends StatelessWidget {
                             children: [
                               const SizedBox(height: 8),
                               Text(
-                                'На данном этапе происходит транспортировка товаров до пункта назначения',
+                                notifs[index]!['desc']!,
                                 style: theme.textTheme.titleSmall?.copyWith(
                                   fontSize: 12,
                                   height: 14 / 12,

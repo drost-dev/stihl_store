@@ -6,6 +6,21 @@ import 'package:stihl_store/router/app_router.dart';
 class PurchaseHistoryScreen extends StatelessWidget {
   const PurchaseHistoryScreen({super.key});
 
+  final products = const {
+    0: {
+      'image': 'images/product1.png',
+      'title': 'МОЙКА RE 130 PLUS',
+      'desc': 'Компактная мойка высокого давления',
+      'price': '49 990р.',
+    },
+    1: {
+      'image': 'images/product2.png',
+      'title': 'Мотокоса FS 38',
+      'desc': 'Лёгкая мотокоса мощностью 0,65 кВт',
+      'price': '17 990р.',
+    },
+  };
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -108,21 +123,21 @@ class PurchaseHistoryScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Container(
-                            constraints: const BoxConstraints(maxHeight: 148),
+                            constraints: const BoxConstraints(maxHeight: 145),
                             child: Image.asset(
-                              'images/product1.png',
+                              products[index]!['image']!,
                               fit: BoxFit.fitHeight,
                             ),
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            'МОЙКА RE 130 PLUS',
+                            products[index]!['title']!,
                             softWrap: true,
                             style: theme.textTheme.bodyLarge,
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            'Компактная мойка высокого давления',
+                            products[index]!['desc']!,
                             softWrap: true,
                             style: theme.textTheme.bodyLarge?.copyWith(
                               fontWeight: FontWeight.normal,
@@ -136,7 +151,7 @@ class PurchaseHistoryScreen extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  '49 990р.',
+                                  products[index]!['price']!,
                                   softWrap: true,
                                   style: theme.textTheme.bodyLarge?.copyWith(
                                     fontSize: 9,

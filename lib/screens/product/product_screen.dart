@@ -5,6 +5,19 @@ import 'package:flutter/material.dart';
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});
 
+  final reviews = const {
+    0: {
+      'name': 'Дмитрий',
+      'rating': 5,
+      'text': 'Лучшая мойка, всем советую.',
+    },
+    1: {
+      'name': 'Олег',
+      'rating': 2,
+      'text': 'Очень слабый напор. Возможно ojiswrebkjrswg Выше 2 не поставлю',
+    },
+  };
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -373,9 +386,9 @@ class ProductScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return Container(
+                          width: 218,
                           constraints: const BoxConstraints(
                             minHeight: 67,
-                            minWidth: 218,
                           ),
                           decoration: BoxDecoration(
                             color: const Color.fromRGBO(237, 237, 237, 1),
@@ -389,7 +402,7 @@ class ProductScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Дмитрий',
+                                reviews[index]!['name']!.toString(),
                                 style: theme.textTheme.bodyLarge?.copyWith(
                                   fontSize: 8,
                                   height: 14 / 8,
@@ -410,15 +423,15 @@ class ProductScreen extends StatelessWidget {
                                   separatorBuilder: (context, index) {
                                     return const SizedBox(width: 2);
                                   },
-                                  itemCount: 5,
+                                  itemCount: int.parse(reviews[index]!['rating']!.toString()),
                                 ),
                               ),
                               const SizedBox(height: 9),
                               Text(
-                                'Лучшая мойка, всем советую.',
+                                reviews[index]!['text']!.toString(),
                                 style: theme.textTheme.bodyLarge?.copyWith(
                                   fontSize: 8,
-                                  height: 14 / 8,
+                                  height: 14 / (8*1.3),
                                   fontWeight: FontWeight.w300,
                                 ),
                               ),

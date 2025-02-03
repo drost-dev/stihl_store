@@ -18,6 +18,55 @@ class _HomeScreenState extends State<HomeScreen> {
     'Мотокосы/Электрокосы',
   ];
 
+  final products = {
+    0: {
+      'image': 'images/product1.png',
+      'title': 'МОЙКА RE 130 PLUS',
+      'desc': 'Компактная мойка высокого давления',
+      'price': '49 990р.',
+    },
+    1: {
+      'image': 'images/product2.png',
+      'title': 'Мотокоса FS ﻿38',
+      'desc': 'Лёгкая мотокоса мощностью 0,65 кВт',
+      'price': '17 990р.',
+    },
+    2: {
+      'image': 'images/product3.png',
+      'title': 'РУЧНОЙ ОПРЫСКИВАТЕЛЬ SG 11',
+      'desc': 'Компактная мойка высокого давления',
+      'price': '49 990р.',
+    },
+  };
+
+  final catalogProducts = {
+    0: {
+      'image': 'images/catalog1.png',
+      'title': 'ЭЛЕКТРОПИЛА MSE 250 C-Q',
+      'desc': 'Самая мощная электропила STIHL',
+      'price': '45 990р.',
+    },
+    1: {
+      'image': 'images/catalog2.png',
+      'title': 'ЭЛЕКТРОПИЛА MSE 170 C-Q',
+      'desc': 'Лёгкая электропила на 1,7 кВт',
+      'price': '23 990р.',
+    },
+    2: {
+      'image': 'images/catalog3.png',
+      'title': 'ЭЛЕКТРОПИЛА MSE 230 C-BQ',
+      'desc':
+          'Топ-модель: мощная электропила на 2,3 кВт с устройством быстрого натяжения цепи (B)',
+      'price': '33 990р.',
+    },
+    3: {
+      'image': 'images/catalog4.png',
+      'title': 'ЭЛЕКТРОПИЛА MSE 210 C-BQ',
+      'desc': 'Самая мощная электропила STIHL',
+      'price': '45 990р.',
+    },
+  };
+
   int _selectedIndex = 0;
 
   @override
@@ -101,7 +150,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: const Color.fromRGBO(188, 188, 188, 1),
                         ),
                         border: InputBorder.none,
-                        // contentPadding: EdgeInsets.zero,
                         contentPadding: const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 8),
                         prefixIcon: const SizedBox.square(
@@ -178,8 +226,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             alignment: Alignment.topCenter,
                             child: Container(
                               constraints: const BoxConstraints(maxHeight: 128),
+                              alignment: Alignment.center,
                               child: Image.asset(
-                                'images/product1.png',
+                                products[index]!['image']!,
                                 fit: BoxFit.fitHeight,
                               ),
                             ),
@@ -198,13 +247,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Text(
-                                  'МОЙКА RE 130 PLUS',
+                                  products[index]!['title']!,
                                   softWrap: true,
                                   style: theme.textTheme.bodyLarge,
                                 ),
                                 const SizedBox(height: 6),
                                 Text(
-                                  'Компактная мойка высокого давления',
+                                  products[index]!['desc']!,
                                   softWrap: true,
                                   style: theme.textTheme.bodySmall,
                                 ),
@@ -217,7 +266,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        '49 990р.',
+                                        products[index]!['price']!,
                                         softWrap: true,
                                         style:
                                             theme.textTheme.bodyLarge?.copyWith(
@@ -493,12 +542,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Image.asset(
-                          'images/catalog1.png',
+                          catalogProducts[index]!['image']!,
                           fit: BoxFit.fitWidth,
                         ),
                         const SizedBox(height: 22),
                         Text(
-                          'ЭЛЕКТРОПИЛА MSE 250 C-Q',
+                          catalogProducts[index]!['title']!,
                           softWrap: true,
                           style: theme.textTheme.bodyLarge?.copyWith(
                             fontSize: 9,
@@ -507,7 +556,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 6),
                         Text(
-                          'Самая мощная электропила STIHL',
+                          catalogProducts[index]!['desc']!,
                           softWrap: true,
                           style: theme.textTheme.bodySmall?.copyWith(
                             fontSize: 7,
@@ -516,14 +565,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 7),
                         SizedBox(
-                          height: 13,
+                          height: 12,
                           width: 129,
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                '49 990р.',
+                                catalogProducts[index]!['price']!,
                                 softWrap: true,
                                 style: theme.textTheme.bodyLarge?.copyWith(
                                   color: theme.colorScheme.primary,
@@ -707,7 +756,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 15),
               GestureDetector(
                 onTap: () {
-                  print('pressed button 5');
+                  context.router.push(const SettingsRoute());
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

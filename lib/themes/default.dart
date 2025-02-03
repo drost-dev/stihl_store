@@ -55,7 +55,7 @@ var defaultTheme = ThemeData(
     bodyLarge: const TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 7,
-      height: 7/14,
+      height: 10/7,
       letterSpacing: 0,
       color: Colors.black,
     ),

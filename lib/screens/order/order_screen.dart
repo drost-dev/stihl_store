@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stihl_store/router/app_router.dart';
 
@@ -12,6 +11,49 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
+  final products = {
+    0: {
+      'image': 'images/product1.png',
+      'title': 'МОЙКА RE 130 PLUS',
+      'desc': 'Мощная мойка высокого давления (135 бар) повышенной комфортности.',
+      'price': '49 990р.',
+    },
+    1: {
+      'image': 'images/product2.png',
+      'title': 'Мотокоса FS 38',
+      'desc': 'Лёгкая мотокоса мощностью 0,65 кВт',
+      'price': '17 990р.',
+    },
+  };
+
+  final reccomendedProducts = {
+    0: {
+      'image': 'images/catalog1.png',
+      'title': 'ЭЛЕКТРОПИЛА MSE 250 C-Q',
+      'desc': 'Самая мощная электропила STIHL',
+      'price': '45 990р.',
+    },
+    1: {
+      'image': 'images/catalog2.png',
+      'title': 'ЭЛЕКТРОПИЛА MSE 170 C-Q',
+      'desc': 'Лёгкая электропила на 1,7 кВт',
+      'price': '23 990р.',
+    },
+    2: {
+      'image': 'images/catalog3.png',
+      'title': 'ЭЛЕКТРОПИЛА MSE 230 C-BQ',
+      'desc':
+          'Топ-модель: мощная электропила на 2,3 кВт с устройством быстрого натяжения цепи (B)',
+      'price': '33 990р.',
+    },
+    3: {
+      'image': 'images/product3.png',
+      'title': 'РУЧНОЙ ОПРЫСКИВАТЕЛЬ SG 11',
+      'desc': 'Компактная мойка высокого давления',
+      'price': '49 990р.',
+    },
+  };
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -84,7 +126,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ListView.separated(
-                    padding: EdgeInsets.only(left: 20, right: 20),
+                    padding: const EdgeInsets.only(left: 20, right: 20),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
@@ -115,7 +157,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                       minHeight: 121, minWidth: 62),
                                   child: SizedBox.shrink(
                                     child: Image.asset(
-                                      'images/product1.png',
+                                      products[index]!['image']!,
                                       fit: BoxFit.fitHeight,
                                     ),
                                   ),
@@ -132,7 +174,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'МОЙКА RE 130 PLUS',
+                                        products[index]!['title']!,
                                         style: theme.textTheme.labelSmall
                                             ?.copyWith(
                                           fontWeight: FontWeight.w500,
@@ -140,7 +182,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                       ),
                                       const SizedBox(height: 13),
                                       Text(
-                                        'Мощная мойка высокого давления (135 бар) повышенной комфортности.',
+                                        products[index]!['desc']!,
                                         softWrap: true,
                                         style: theme.textTheme.labelSmall
                                             ?.copyWith(
@@ -150,7 +192,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                       ),
                                       const SizedBox(height: 13),
                                       Text(
-                                        '49 990р.',
+                                        products[index]!['price']!,
                                         style:
                                             theme.textTheme.bodyLarge?.copyWith(
                                           fontSize: 12,
@@ -226,13 +268,17 @@ class _OrderScreenState extends State<OrderScreen> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Image.asset(
-                                'images/catalog1.png',
-                                fit: BoxFit.fitWidth,
+                              Container(
+                                alignment: Alignment.center,
+                                constraints: const BoxConstraints(maxHeight: 50),
+                                child: Image.asset(
+                                  reccomendedProducts[index]!['image']!,
+                                  fit: BoxFit.fitWidth,
+                                ),
                               ),
                               const SizedBox(height: 22),
                               Text(
-                                'ЭЛЕКТРОПИЛА MSE 250 C-Q',
+                                reccomendedProducts[index]!['title']!,
                                 softWrap: true,
                                 style: theme.textTheme.bodyLarge?.copyWith(
                                   fontSize: 9,
@@ -241,7 +287,7 @@ class _OrderScreenState extends State<OrderScreen> {
                               ),
                               const SizedBox(height: 6),
                               Text(
-                                'Самая мощная электропила STIHL',
+                                reccomendedProducts[index]!['desc']!,
                                 softWrap: true,
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   fontSize: 7,
@@ -258,7 +304,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      '49 990р.',
+                                      reccomendedProducts[index]!['price']!,
                                       softWrap: true,
                                       style:
                                           theme.textTheme.bodyLarge?.copyWith(

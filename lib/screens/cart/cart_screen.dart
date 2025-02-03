@@ -11,6 +11,21 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  final products = {
+    0: {
+      'image': 'images/product1.png',
+      'title': 'МОЙКА RE 130 PLUS',
+      'desc': 'Мощная мойка высокого давления (135 бар) повышенной комфортности.',
+      'price': '49 990р.',
+    },
+    1: {
+      'image': 'images/product2.png',
+      'title': 'Мотокоса FS 38',
+      'desc': 'Лёгкая мотокоса мощностью 0,65 кВт',
+      'price': '17 990р.',
+    },
+  };
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -127,7 +142,7 @@ class _CartScreenState extends State<CartScreen> {
                                 minHeight: 121, minWidth: 62),
                             child: SizedBox.shrink(
                               child: Image.asset(
-                                'images/product1.png',
+                                products[index]!['image']!,
                                 fit: BoxFit.fitHeight,
                               ),
                             ),
@@ -142,14 +157,14 @@ class _CartScreenState extends State<CartScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'МОЙКА RE 130 PLUS',
+                                  products[index]!['title']!,
                                   style: theme.textTheme.labelSmall?.copyWith(
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
                                 const SizedBox(height: 13),
                                 Text(
-                                  'Мощная мойка высокого давления (135 бар) повышенной комфортности.',
+                                  products[index]!['desc']!,
                                   softWrap: true,
                                   style: theme.textTheme.labelSmall?.copyWith(
                                     fontSize: 8,
@@ -158,7 +173,7 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                                 const SizedBox(height: 13),
                                 Text(
-                                  '49 990р.',
+                                  products[index]!['price']!,
                                   style: theme.textTheme.bodyLarge?.copyWith(
                                     fontSize: 12,
                                     height: 12 / 14,
