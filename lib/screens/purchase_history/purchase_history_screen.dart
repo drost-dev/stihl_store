@@ -155,7 +155,7 @@ class PurchaseHistoryScreen extends StatelessWidget {
                                   softWrap: true,
                                   style: theme.textTheme.bodyLarge?.copyWith(
                                     fontSize: 9,
-                                    height: 9/14,
+                                    height: 9 / 14,
                                     color: theme.colorScheme.primary,
                                   ),
                                 ),
